@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {aakashComponent} from './car.component'
+import { ProductComponent } from "./products/product.component";
 
 @NgModule({
     //Module declare here
@@ -12,7 +13,8 @@ import {aakashComponent} from './car.component'
     //Component/pipe goes here
     declarations:[
         AppComponent,
-        aakashComponent
+        aakashComponent,
+        ProductComponent
     ],
     //only main component
     bootstrap:[ AppComponent ]
