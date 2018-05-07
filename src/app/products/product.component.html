@@ -34,15 +34,19 @@
                     {{showImage}}
                     <tr *ngFor="let product of products | ProductFilter:filterProduct">
                         <td>
-                            <img [src]="product.imageUrl" *ngIf="showImage"/>
+                            <img [style.width.px]="imageWidth" [src]="product.imageUrl" *ngIf="showImage"/>
                         </td>
                         <td>{{product.productName | EduUpper:uppercase}}</td>
-                        <td>{{product.productCode | lowercase}}</td>
+                        <td >{{product.productCode | lowercase}}</td>
                         <td>{{product.releaseDate}}</td>
                         <td [ngStyle]="{'background-color':product.price>30?'green':'red'}">
                             {{product.price|checkValue|currency:"GBP"}}
                         </td>
-                        <td>{{product.starRating}}</td>
+                        <td>
+                            <star-comp [rating]="product.starRating"
+                                (ratingClicked)="onDataRecive($event)"   
+                            ></star-comp>
+                        </td>
                     </tr>
                 </tbody>
             </table>
