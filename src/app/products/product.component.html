@@ -32,11 +32,15 @@
                 
                 <tbody>
                     {{showImage}}
+                    MEAN
                     <tr *ngFor="let product of products | ProductFilter:filterProduct">
                         <td>
                             <img [style.width.px]="imageWidth" [src]="product.imageUrl" *ngIf="showImage"/>
                         </td>
-                        <td>{{product.productName | EduUpper:uppercase}}</td>
+                        <td>
+                            <a [routerLink]="['/products',product.productId]"
+                            [queryParams]="{name:product.productName,desc:product.description,image:product.imageUrl}">{{product.productName | EduUpper:uppercase}}</a>
+                        </td>
                         <td >{{product.productCode | lowercase}}</td>
                         <td>{{product.releaseDate}}</td>
                         <td [ngStyle]="{'background-color':product.price>30?'green':'red'}">
