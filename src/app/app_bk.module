@@ -5,10 +5,17 @@ import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router'
 
 import {AppComponent} from './app.component';
+import {aakashComponent} from './car.component'
+import { ProductComponent } from "./products/product.component";
+import { PipeUpper } from "./products/product-upper.pipe";
+import { CheckValuePipe } from "./products/product-check.pipe";
+import { ProductFilter } from "./products/product-filter.pipe";
+import { StarComponent } from "./shared/star.component";
+import { ProductService } from "./products/product.service";
 import { HomeComponent } from "./home/home.component";
+import { ProductDetail } from "./products/product-details.component";
 import { OrderComponent } from "./orders/order.component";
 import { NotFoundComponent } from "./shared/notFound.component";
-import { ProductModule } from "./products/product.module";
 
 @NgModule({
     //Module declare here
@@ -16,23 +23,36 @@ import { ProductModule } from "./products/product.module";
         BrowserModule,
         FormsModule,
         HttpModule,
-        ProductModule,
         RouterModule.forRoot([
+            
+            {path:'products', component:ProductComponent},
+            {path:'products/:id',component:ProductDetail},
             {path:'order', component:OrderComponent},
             {path:'home',component:HomeComponent},
             {path:'',redirectTo:'home',pathMatch:'full'},
             {path:'**',component:NotFoundComponent}
+            
+            
         ])
     ],
     //Component/pipe goes here
     declarations:[
         AppComponent,
+        aakashComponent,
+        ProductComponent,
+        PipeUpper,
+        CheckValuePipe,
+        ProductFilter,
+        StarComponent,
         HomeComponent,
+        ProductDetail,
         OrderComponent,
         NotFoundComponent
     ],
     //only main component
-    bootstrap:[ AppComponent ]
+    bootstrap:[ AppComponent ],
+    //Service Come here
+    providers:[ProductService]
 })
 
 export class AppModule{
